@@ -15,6 +15,7 @@ import fr.insalyon.dasi.positifihm.action.ActionGenererVoyance;
 import fr.insalyon.dasi.positifihm.action.ActionHistorique;
 import fr.insalyon.dasi.positifihm.action.ActionInscription;
 import fr.insalyon.dasi.positifihm.action.ActionProfil;
+import fr.insalyon.dasi.positifihm.action.ActionProfilClientPourEmploye;
 import fr.insalyon.dasi.positifihm.action.ActionProfilEmployer;
 import fr.insalyon.dasi.positifihm.action.ActionStat;
 import fr.insalyon.dasi.positifihm.action.ActionTerminerVoyance;
@@ -132,6 +133,12 @@ public class ActionServlet extends HttpServlet {
                     action = new ActionProfilEmployer();
                     action.act(request);
                     serialisation = new SerialisationAccueilEmploye();
+                    serialisation.serialize(request, response);
+                    break;
+                case "retournerClientPourEmploye":
+                    action = new ActionProfilClientPourEmploye();
+                    action.act(request);
+                    serialisation = new SerialisationProfil();
                     serialisation.serialize(request, response);
                     break;
                 case "genererVoyance":

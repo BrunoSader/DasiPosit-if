@@ -21,9 +21,9 @@ and open the template in the editor.
                         todo: 'historique',
                     },
                     dataType: 'json'        // Type de retour attendu
-                }).done(function (data) {  // Appel OK => "response" contient le resultat JSON
+                }).done(function (response) {  // Appel OK => "response" contient le resultat JSON
                     $('#listeConvos').empty();
-                    var convos = data.Conversations;
+                    var convos = response.Conversations;
                     var deja = new Boolean();
                     for (var i = 0; i < convos.length; i++) {
                         deja = false;
@@ -65,9 +65,9 @@ and open the template in the editor.
                             idMedium: idMedium
                         },
                         dataType: 'json' // Type de retour attendu
-                    }).done(function (data) {
+                    }).done(function (response) {
                         $('#selectedConvo').empty();
-                        var convosMed = data.ConversationsMed;
+                        var convosMed = response.ConversationsMed;
                         for (var i = 0; i < convosMed.length; i++) {
                             $('#selectedConvo').append(
                                 convosMed[i].debut + '           ' + convosMed[i].fin

@@ -109,6 +109,7 @@ public class SerialisationAccueilEmploye extends Serialisation {
                         nbConvo++;
                         JsonObject jsonConvo = new JsonObject();
                         jsonConvo.addProperty("client", uneConvo.getClient().getPrenom() + " " + uneConvo.getClient().getNom());
+                        jsonConvo.addProperty("clientId", uneConvo.getClient().getId());
                         jsonConvo.addProperty("medium", uneConvo.getMedium().getNom());
                         jsonConvo.addProperty("id", uneConvo.getId());
                         jsonArrayConvo.add(jsonConvo);

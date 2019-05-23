@@ -66,12 +66,16 @@
 
             function ajouter(convos) {
                 $("#liste-convos").append(
-                        '<li>Client:' + convos.client +' Medium: '+convos.medium +'<button id='+convos.id+' onClick="onAccepterVoyance(this.id)">Accepter Voyance</button></li>'
+                        '<li><h4 id='+convos.id+' onClick="profilClientParEmploye(this.id)">Client:' + convos.client +' Medium: '+convos.medium +'</h4><button id='+convos.id+' onClick="onAccepterVoyance(this.id)">Accepter Voyance</button></li>'
                         );
             }
             
             function onAccepterVoyance(id) {
                 window.location = "generateurVoyance.html?id="+id;
+            }
+            
+            function profilClientParEmploye(id) {
+                window.location = "profilClientParEmploye.html?id="+id;
             }
 
         </script>

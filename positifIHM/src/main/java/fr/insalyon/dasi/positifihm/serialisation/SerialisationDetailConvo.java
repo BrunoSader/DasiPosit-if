@@ -99,7 +99,6 @@ public class SerialisationDetailConvo extends Serialisation {
             List<Conversation> mesConversations = (List<Conversation>) request.getAttribute("conversationsMed");
             request.removeAttribute("conversationsMed");
             DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh");
-            System.out.println("*******************************************************************************"+(mesConversations.get(0)).getDebut());
             for (Conversation uneConvo : mesConversations) {
                 JsonObject jsonConvo = new JsonObject();
                 jsonConvo.addProperty("debut", dateFormat.format(uneConvo.getDebut()));

@@ -97,7 +97,6 @@ public class ActionDetailConvo extends Action {
         // On récupère l'id du medium passé en paramètre
         String chaine = request.getParameter("idMedium");
         Long id = Long.parseLong(chaine);
-        Medium Med = s.getMediumParId(id);
         
         // On récupère la session de connexion en cours
         HttpSession session = request.getSession(true);

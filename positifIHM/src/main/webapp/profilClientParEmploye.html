@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Profil de Client</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="belleIHM.css" rel="stylesheet" type="text/css" media="all">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <script>
+            
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id");
+            
+            function onAccepterVoyance() {
+                window.location = "generateurVoyance.html?id="+id;
+            }
+            
+            function retournerClient() {  
+
+                // Message d'information dans la div #message :
+                $('#message').html('Connexion en cours...');
+                ;
+
+                // Requête AJAX
+                $.ajax({
+
+                    url: './ActionServlet', // URL
+                    method: 'POST', // Méthode
+                    data: {// Paramètres
+                        todo: 'retournerClientPourEmploye',
+                        id: id,
+                    },
+                    dataType: 'json'        // Type de retour attendu
+
+                }).done(function (response) {  // Appel OK => "response" contient le resultat JSON
+
+                    // ici votre code...
+                        $('#prenom').html(response.prenom);
+                        $('#nom').html(response.nom);
+                        $('#zodiac').html(response.zodiac);
+                        $('#animalChinois').html(response.chinois);
+                        $('#couleur').html(response.couleur);
+                        $('#animal').html(response.totem);
+                        
+
+                }).fail(function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+
+            }
+            
+            $(document).ready(function () {
+
+                console.log('Page chargee => Debut du Script');
+                
+                retournerClient();
+
+            });
+        </script>
+        <div>Profil de Client</div>
+        
+        <h1 id="prenom"> ... </h1>
+        <h1 id="nom"> ... </h1>
+        <h1> Signe du zodiac </h1>
+        <h1 id="zodiac"> ... </h1>
+        <h1> Animal Chinois </h1>
+        <h1 id="animalChinois"> ... </h1>
+        <h1> Couleur </h1>
+        <h1 id="couleur"> ... </h1>
+        <h1> Animal Totem </h1>
+        <h1 id="animal"> ... </h1>
+        <p id="insert"></p>
+        
+        <button onClick="onAccepterVoyance()" class="joli-bouton">Accepter la demande de voyance</button>
+        
+    </body>
+</html>
